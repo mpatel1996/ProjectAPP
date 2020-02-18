@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import './staff_page.dart';
-import './aboutUs_page.dart';
+import './socialMedia_page.dart';
 import './events_page.dart';
 import './faq_page.dart';
 
@@ -19,7 +19,7 @@ class MyAppState extends State<MyApp> {
   final _pageOptions = [
     EventPage(),
     StaffPage(),
-    AboutUsPage(),
+    SocialMediaPage(),
     FaqPage(),
   ];
 
@@ -54,7 +54,7 @@ class MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.mood, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('About Us', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+              title: Text('Social Media', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.help_outline, color: Color.fromARGB(225, 16, 126, 1),), 
