@@ -10,6 +10,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('PolyTransfer APPPPP'),),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(begin: Alignment.topRight, colors: [
