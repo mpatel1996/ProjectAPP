@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  int _selectedPage = 3;
+  int _selectedPage = 0;
   final _pageOptions = [
     EventPage(),
     StaffPage(),
@@ -30,6 +30,7 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
