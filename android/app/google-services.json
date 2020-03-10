@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "492339872021",
+    "firebase_url": "https://polytransfer-8f708.firebaseio.com",
+    "project_id": "polytransfer-8f708",
+    "storage_bucket": "polytransfer-8f708.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492339872021:android:0928dcd2ca3e25b934e91c",
+        "android_client_info": {
+          "package_name": "com.polytransfer.ptconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492339872021-34jds98rkdmj8n7vpgbl4g882kniin27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr_3Nni2ngIexGr6M0qm4MGTKvqhpfpXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492339872021-34jds98rkdmj8n7vpgbl4g882kniin27.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,23 +1,23 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class StaffPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     // Maybe instead of listView and hard coding all employee, lets try using listview itembuilder with List of name, Image and profile picture link. 
     // Can be imported through firebase. Also add onTap() state to open the employee into a new page.
     return ListView(
       padding: const EdgeInsets.all(8),
-      // itemBuilder: (BuildContext context, int index) {
-      // Column(
-      //   crossAxisAlignment: CrossAxisAlignment.stretch,
-      //   mainAxisSize: MainAxisSize.max,
       children: <Widget>[
 
         // First Employee
         Container(
           padding: const EdgeInsets.all(10),
           height: 250,
-          // color: Colors.green[100],
+          
           child: Container(
             decoration: new BoxDecoration(
               color: Colors.lightBlueAccent,
@@ -88,8 +88,5 @@ class StaffPage extends StatelessWidget {
         ),
       ],
     );
-    // },
-    // separatorBuilder: (BuildContext context, int index) => const Divider(),
-    // );
   }
 }

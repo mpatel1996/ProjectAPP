@@ -15,8 +15,7 @@ class FaqPage extends StatelessWidget {
     'PolyTransfer offers Peer Mentorship program to help students get connected with different campus resources, and create sense of belonging.',
 
   ];
-  // final List<int> colorCodes = <int>[100];
-
+  
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -27,17 +26,21 @@ class FaqPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
+            
             Container(
+              decoration: new BoxDecoration(
+                color: Colors.lightBlueAccent,
+                borderRadius: new BorderRadius.all(Radius.circular(10.0)),
+              ),
+
               padding: const EdgeInsets.all(10),
-              // height: 150,
-              color: Colors.green[100],
               child: Column(                
                 children: <Widget>[
                   Text(                    
                     '${questions[index]}',
                     style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.visible,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
