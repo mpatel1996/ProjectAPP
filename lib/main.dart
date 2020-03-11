@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 import './staff_page.dart';
-import './socialMedia_page.dart';
+import './partner_page.dart';
 import './events_page.dart';
 import './faq_page.dart';
 
@@ -16,11 +15,19 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   int _selectedPage = 0;
+  String title = "Events";
   final _pageOptions = [
     EventPage(),
     StaffPage(),
-    SocialMediaPage(),
+    PartnerPage(),
     FaqPage(),
+  ];
+
+  final _titleOption = [
+    "Events",
+    "Staff and Peer Mentors",
+    "Campus Partners",
+    "FAQ Page",
   ];
 
   @override
@@ -34,7 +41,7 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('PolyTransfer Connect'),
+          title: Text(title),
         ),
         body: _pageOptions[_selectedPage],
         bottomNavigationBar: BottomNavigationBar(
@@ -42,6 +49,7 @@ class MyAppState extends State<MyApp> {
           onTap: (int index) {
             setState(() {
               _selectedPage = index;
+              title = _titleOption.elementAt(index);
             });
           },
           items: [
