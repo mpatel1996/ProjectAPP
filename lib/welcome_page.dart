@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class WelcomePage extends StatefulWidget {
   @override
   _WelcomePageState createState() => _WelcomePageState();
@@ -9,9 +8,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('PolyTransfer APPPPP'),),
-      body: Container(
+    return  Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(begin: Alignment.topRight, colors: [
             Colors.blue[900],
@@ -66,7 +63,6 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
           ],
         ),
-      ),
     );
   }
 }

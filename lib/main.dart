@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 import './staff_page.dart';
 import './partner_page.dart';
 import './events_page.dart';
 import './faq_page.dart';
+import './welcome_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,21 +16,42 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  int _selectedPage = 0;
+  int _selectedPage = 3;
   String title = "Events";
-  final _pageOptions = [
+  final _pageOptions = [    
     EventPage(),
     StaffPage(),
     PartnerPage(),
     FaqPage(),
+    WelcomePage(),
   ];
 
-  final _titleOption = [
+  final _titleOption = [    
     "Events",
     "Staff and Peer Mentors",
     "Campus Partners",
     "FAQ Page",
+    "PolyTransfer Connect",
   ];
+
+  final DatabaseReference ref = FirebaseDatabase.instance.reference();
+  var employeeList = [];
+
+  void getNames() {
+    print('Get Name Called');
+    ref.child("/employee").once().then((ds) {
+      employeeList.clear();
+      ds.value.forEach((key, value) {
+        print(key);
+        print(value);
+        employeeList.add(value);
+      });
+
+      // print(employeeList);
+    }).catchError((e) {
+      print('Failed to get Employee Names' + e.toString());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

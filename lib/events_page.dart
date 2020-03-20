@@ -1,36 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-class EventPage extends StatefulWidget {
-  
-  EventPage({Key key, this.title}) : super(key: key);
-  final String title;
+class EventPage extends StatelessWidget {
+  final DatabaseReference ref = FirebaseDatabase.instance.reference();
+  final eventList = [];
+
+  EventPage() {
+    print('Get Name Called');
+    ref.child("/Events").once().then((ds) {
+      eventList.clear();
+      ds.value.forEach((key, value) {
+        print(key);
+        print(value);
+        eventList.add(value);
+      });
+
+      // print(employeeList);
+    }).catchError((e) {
+      print('Failed to get Employee Names' + e.toString());
+    });
+  }
 
   @override
-  _EventPageState createState() => _EventPageState();
-  
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: eventList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Container(
+              padding: const EdgeInsets.all(3),
+              height: 100,
+              decoration: new BoxDecoration(
+                color: Colors.lightBlueAccent,
+                borderRadius: new BorderRadius.all(Radius.circular(10.0)),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.all(5)),
+                  Text(
+                    '${eventList[index]['Name']}',
+                    style:
+                        TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    '${eventList[index]['Place']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    '${eventList[index]['Time']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 }
-
-class _EventPageState extends State<EventPage> {
-  CalendarController _calendarController;
-    @override
-    void initState() {
-      super.initState();
-      _calendarController = CalendarController();
-    }
-
-    @override
-    void dispose() {
-      _calendarController.dispose();
-      super.dispose();
-    }
-
-    @override
-    Widget build(BuildContext context) {
-      return TableCalendar(
-        calendarController: _calendarController,
-      );
-    }  
-}
-
