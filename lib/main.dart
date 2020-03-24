@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import './staff_page.dart';
-import './resource_page.dart';
-import './events_page.dart';
+import './staff/staff_page.dart';
+import './resources/resource_page.dart';
+import './events/events_page.dart';
 import './faq_page.dart';
 
 void main() => runApp(MyApp());
