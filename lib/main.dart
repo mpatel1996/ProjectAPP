@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import './staff_page.dart';
-import './partner_page.dart';
+import './resource_page.dart';
 import './events_page.dart';
 import './faq_page.dart';
-import './welcome_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,17 +20,15 @@ class MyAppState extends State<MyApp> {
   final _pageOptions = [    
     EventPage(),
     StaffPage(),
-    PartnerPage(),
+    ResourcePage(),
     FaqPage(),
-    WelcomePage(),
   ];
 
   final _titleOption = [    
     "Events",
     "Staff and Peer Mentors",
-    "Campus Partners",
+    "Campus Resources",
     "FAQ Page",
-    "PolyTransfer Connect",
   ];
 
   final DatabaseReference ref = FirebaseDatabase.instance.reference();
@@ -86,7 +83,7 @@ class MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.mood, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('Social Media', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+              title: Text('Partners', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.help_outline, color: Color.fromARGB(225, 16, 126, 1),), 

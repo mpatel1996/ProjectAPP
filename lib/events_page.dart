@@ -6,16 +6,24 @@ class EventPage extends StatelessWidget {
   final eventList = [];
 
   EventPage() {
-    print('Get Name Called');
+    getEvents();
+    
+    ref.child("/Events").onChildChanged.listen((event) {
+      getEvents();
+    });
+    ref.child("/Events").onChildAdded.listen((event) {
+      getEvents();
+    });
+    ref.child("/Events").onChildRemoved.listen((event) {
+      getEvents();
+    });
+  }
+  getEvents() {
     ref.child("/Events").once().then((ds) {
       eventList.clear();
       ds.value.forEach((key, value) {
-        print(key);
-        print(value);
         eventList.add(value);
       });
-
-      // print(employeeList);
     }).catchError((e) {
       print('Failed to get Employee Names' + e.toString());
     });

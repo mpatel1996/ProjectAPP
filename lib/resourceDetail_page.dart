@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class StaffDetailPage extends StatefulWidget {
-  StaffDetailPage({Key key, this.staff}) : super(key: key);
+class RecourceDetailPage extends StatefulWidget {
+  RecourceDetailPage({Key key, this.resource}) : super(key: key);
 
-  final Map staff;
-  _StaffDetailPageState createState() => _StaffDetailPageState();
+  final Map resource;
+  _RecourceDetailPageState createState() => _RecourceDetailPageState();
   
 }
 
-class _StaffDetailPageState extends State<StaffDetailPage> {
+class _RecourceDetailPageState extends State<RecourceDetailPage> {
   final DatabaseReference ref = FirebaseDatabase.instance.reference();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.staff['Name']),
+        title: Text(widget.resource['Name']),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            (widget.staff['Image'] == null)
+          mainAxisAlignment: MainAxisAlignment.center,          
+          children: <Widget>[            
+            (widget.resource['Image'] == null)
                 ? Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 20.0),
-                              child: Image.asset('lib/images/profile_picture.png', height: 100, width: 100,),
+                              child: Image.asset('', height: 100, width: 100,),
                             )
                 : Image.network(
-                    widget.staff['Image'],
+                    widget.resource['Image'],
                     fit: BoxFit.fill,
                     height: 350,
                     width: 350,
@@ -37,21 +37,23 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
             SizedBox(
               height: 20,
             ),
-            Text('${widget.staff['Name']}',
+            Text('${widget.resource['Name']}',
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
             SizedBox(
-              height: 5,
+              height: 10,
             ),
-            Text('Major: ${widget.staff['Major']}'),
-            Text(
-              'Fact: ${widget.staff['Fact']}',
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Text(
+                'Location: ${widget.resource['Location']}',
+                textAlign: TextAlign.center,
+              ),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
-              'Contact: ${widget.staff['Contact']}',
+              'Contact: ${widget.resource['Contact']}',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.w700,

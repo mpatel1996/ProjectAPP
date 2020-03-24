@@ -9,7 +9,7 @@ class StaffPage extends StatelessWidget {
 
   StaffPage() {
     getNames();
-    
+
     ref.child("/employee").onChildChanged.listen((event) {
       getNames();
     });
@@ -21,17 +21,17 @@ class StaffPage extends StatelessWidget {
     });
   }
 
-  void getNames(){
+  void getNames() {
     ref.child("/employee").once().then((ds) {
       employeeList.clear();
       ds.value.forEach((key, value) {
         employeeList.add(value);
       });
-
     }).catchError((e) {
       print('Failed to get Employee Names' + e.toString());
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,11 +41,11 @@ class StaffPage extends StatelessWidget {
             return ListTile(
               onTap: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => StaffDetailPage(
-                      staff: employeeList[index],
-                    )));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => StaffDetailPage(
+                              staff: employeeList[index],
+                            )));
               },
               title: Container(
                 padding: const EdgeInsets.all(5),
@@ -60,15 +60,21 @@ class StaffPage extends StatelessWidget {
                       // Column(
                       //   children: <Widget>[
                       // Image.asset('lib/images/profile_picture.png',height: 100, width: 100,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 20.0),
-                        child: CircleAvatar(
-                          maxRadius: 70,
-                          backgroundImage:
-                              NetworkImage('${employeeList[index]['Image']}'),
-                        ),
-                      ),
+                      employeeList[index]['Image'] == null
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 20.0),
+                              child: Image.asset('lib/images/profile_picture.png', height: 130, width: 140,),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 20.0),
+                              child: CircleAvatar(
+                                maxRadius: 70,
+                                backgroundImage: NetworkImage(
+                                    '${employeeList[index]['Image']}'),
+                              ),
+                            ),
                       Flexible(
                         child: Text(
                           '${employeeList[index]['Name']}',
