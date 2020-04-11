@@ -96,13 +96,3 @@ class StaffPage extends StatelessWidget {
     );
   }
 }
-
-// void setNames() {
-//   ref
-//       .child("Eric/new")
-//       .set({"name": "Mihir", "Type": "button added"}).then((res) {
-//     print("Test added");
-//   }).catchError((e) {
-//     print("object" + e.toString());
-//   });
-// }

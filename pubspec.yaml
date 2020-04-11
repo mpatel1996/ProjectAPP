@@ -14,7 +14,7 @@ description: A new project for PolyTransfer Student to connect to staff and camp
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -22,6 +22,10 @@ dependencies:
   firebase_core: ^0.4.4+2
   firebase_database: ^3.1.3
   table_calendar: ^2.2.2
+  flutter_email_sender: ^3.0.1
+  image_picker: ^0.5.0+3
+  path_provider: ^0.4.1
+  url_launcher: ^3.0.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2

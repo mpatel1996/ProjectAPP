@@ -83,7 +83,7 @@ class MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.mood, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('Partners', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+              title: Text('Resources', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.help_outline, color: Color.fromARGB(225, 16, 126, 1),), 
