@@ -98,19 +98,33 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                           SizedBox(
                             height: 5,
                           ),
-                          Text.rich(
-                            TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Major: ',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                TextSpan(
-                                  text: '${widget.staff['Major']}',
+                          (widget.staff['Major'] != null)
+                              ? Text.rich(
+                                  TextSpan(
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'Major: ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                        text: '${widget.staff['Major']}',
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : Text.rich(
+                                  TextSpan(
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'Position: ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                        text: '${widget.staff['Position']}',
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
                           Text.rich(
                             TextSpan(
                               children: <TextSpan>[
@@ -125,7 +139,7 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 15,
+                            height: 25,
                           ),
                           Text.rich(
                             TextSpan(
@@ -180,7 +194,8 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
                             controller: _bodyController,
-                            maxLines: 10,
+                            minLines: 10,
+                            maxLines: 100,
                             decoration: InputDecoration(
                                 labelText: 'Body',
                                 border: OutlineInputBorder()),
@@ -192,6 +207,9 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                 ],
               ),
             ],
+          ),
+          SizedBox(
+            height: 15,
           ),
         ],
       ),

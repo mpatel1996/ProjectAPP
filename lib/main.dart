@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 import './staff/staff_page.dart';
 import './resources/resource_page.dart';
@@ -31,27 +30,9 @@ class MyAppState extends State<MyApp> {
     "FAQ Page",
   ];
 
-  final DatabaseReference ref = FirebaseDatabase.instance.reference();
-  var employeeList = [];
-
-  void getNames() {
-    print('Get Name Called');
-    ref.child("/employee").once().then((ds) {
-      employeeList.clear();
-      ds.value.forEach((key, value) {
-        print(key);
-        print(value);
-        employeeList.add(value);
-      });
-
-      // print(employeeList);
-    }).catchError((e) {
-      print('Failed to get Employee Names' + e.toString());
-    });
-  }
-
   var colorDefault = Color.fromARGB(225, 16, 126, 1);
   var colorSelected = Colors.blue;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -74,7 +55,7 @@ class MyAppState extends State<MyApp> {
             });
           },
           items: [
-            BottomNavigationBarItem(             
+            BottomNavigationBarItem(
               icon: Icon(
                 Icons.event,
                 color: (_selectedPage == 0) ? colorSelected : colorDefault,
