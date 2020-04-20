@@ -80,6 +80,7 @@ class MyAppState extends State<MyApp> {
               ),
             ),
             BottomNavigationBarItem(
+<<<<<<< HEAD
               icon: Icon(
                 Icons.star,
                 color: (_selectedPage == 2) ? colorSelected : colorDefault,
@@ -90,6 +91,10 @@ class MyAppState extends State<MyApp> {
                   color: (_selectedPage == 2) ? colorSelected : colorDefault,
                 ),
               ),
+=======
+              icon: Icon(Icons.mood, color: Color.fromARGB(225, 16, 126, 1),), 
+              title: Text('Partners', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+>>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
             ),
             BottomNavigationBarItem(
               icon: Icon(
