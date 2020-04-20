@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 import './staff/staff_page.dart';
 import './resources/resource_page.dart';
@@ -16,30 +17,47 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   int _selectedPage = 3;
   String title = "Events";
-  final _pageOptions = [
+  final _pageOptions = [    
     EventPage(),
     StaffPage(),
     ResourcePage(),
     FaqPage(),
   ];
 
-  final _titleOption = [
+  final _titleOption = [    
     "Events",
     "Staff and Peer Mentors",
     "Campus Resources",
     "FAQ Page",
   ];
 
-  var colorDefault = Color.fromARGB(225, 16, 126, 1);
-  var colorSelected = Colors.blue;
+  final DatabaseReference ref = FirebaseDatabase.instance.reference();
+  var employeeList = [];
+
+  void getNames() {
+    print('Get Name Called');
+    ref.child("/employee").once().then((ds) {
+      employeeList.clear();
+      ds.value.forEach((key, value) {
+        print(key);
+        print(value);
+        employeeList.add(value);
+      });
+
+      // print(employeeList);
+    }).catchError((e) {
+      print('Failed to get Employee Names' + e.toString());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //title: "PolyTransfer Connect",
+      title: "PolyTransfer Connect",
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
@@ -56,63 +74,20 @@ class MyAppState extends State<MyApp> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.event,
-                color: (_selectedPage == 0) ? colorSelected : colorDefault,
-              ),
-              title: Text(
-                'Event',
-                style: TextStyle(
-                  color: (_selectedPage == 0) ? colorSelected : colorDefault,
-                ),
-              ),
+              icon: Icon(Icons.calendar_today, color: Color.fromARGB(225, 16, 126, 1),), 
+              title: Text('Event', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: (_selectedPage == 1) ? colorSelected : colorDefault,
-              ),
-              title: Text(
-                'Staff',
-                style: TextStyle(
-                  color: (_selectedPage == 1) ? colorSelected : colorDefault,
-                ),
-              ),
+              icon: Icon(Icons.person, color: Color.fromARGB(225, 16, 126, 1),), 
+              title: Text('Staff', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
             ),
             BottomNavigationBarItem(
-<<<<<<< HEAD
-              icon: Icon(
-                Icons.star,
-                color: (_selectedPage == 2) ? colorSelected : colorDefault,
-              ),
-              title: Text(
-                'Resources',
-                style: TextStyle(
-                  color: (_selectedPage == 2) ? colorSelected : colorDefault,
-                ),
-              ),
-=======
               icon: Icon(Icons.mood, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('Partners', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
-=======
->>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
-=======
->>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
+              title: Text('Resources', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.help_outline,
-                color: (_selectedPage == 3) ? colorSelected : colorDefault,
-              ),
-              title: Text(
-                'FAQ',
-                style: TextStyle(
-                  color: (_selectedPage == 3) ? colorSelected : colorDefault,
-                ),
-              ),
+              icon: Icon(Icons.help_outline, color: Color.fromARGB(225, 16, 126, 1),), 
+              title: Text('FAQ', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
             ),
           ],
         ),
