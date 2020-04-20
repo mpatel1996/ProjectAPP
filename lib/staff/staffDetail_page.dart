@@ -1,42 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class StaffDetailPage extends StatefulWidget {
   StaffDetailPage({Key key, this.staff}) : super(key: key);
 
   final Map staff;
+
   _StaffDetailPageState createState() => _StaffDetailPageState();
-  
 }
 
 class _StaffDetailPageState extends State<StaffDetailPage> {
   final DatabaseReference ref = FirebaseDatabase.instance.reference();
 
+  final _subjectController = TextEditingController(text: 'The subject');
+
+  final _bodyController = TextEditingController(
+    text: 'Mail body.',
+  );
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  Future<void> send() async {
+    final Email email = Email(
+      body: _bodyController.text,
+      subject: _subjectController.text,
+      recipients: ['${widget.staff['Contact'].toString()}'],
+    );
+
+    String platformResponse;
+
+    try {
+      await FlutterEmailSender.send(email);
+      platformResponse = 'success';
+    } catch (error) {
+      platformResponse = error.toString();
+    }
+
+    if (!mounted) return;
+
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(platformResponse),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
+    double cWidth = MediaQuery.of(context).size.width * 0.55;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.staff['Name']),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            (widget.staff['Image'] == null)
-                ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 20.0),
-                              child: Image.asset('lib/images/profile_picture.png', height: 100, width: 100,),
-                            )
-                : Image.network(
-                    widget.staff['Image'],
-                    fit: BoxFit.fill,
-                    height: 350,
-                    width: 350,
+      body: ListView(
+        children: [
+          Column(
+            children: <Widget>[
+              // Image and Info
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // Image
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          (widget.staff['Image'] == null)
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0, vertical: 20.0),
+                                  child: Image.asset(
+                                    'lib/images/profile_picture.png',
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                                )
+                              : Image.network(
+                                  widget.staff['Image'],
+                                  fit: BoxFit.fill,
+                                  height: 150,
+                                  width: 150,
+                                ),
+                        ]),
                   ),
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
                   // Info
                   Container(
@@ -52,33 +98,19 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                           SizedBox(
                             height: 5,
                           ),
-                          (widget.staff['Major'] != null)
-                              ? Text.rich(
-                                  TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Major: ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                        text: '${widget.staff['Major']}',
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : Text.rich(
-                                  TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Position: ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      TextSpan(
-                                        text: '${widget.staff['Position']}',
-                                      ),
-                                    ],
-                                  ),
+                          Text.rich(
+                            TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'Major: ',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                  text: '${widget.staff['Major']}',
                                 ),
+                              ],
+                            ),
+                          ),
                           Text.rich(
                             TextSpan(
                               children: <TextSpan>[
@@ -93,7 +125,7 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 25,
+                            height: 15,
                           ),
                           Text.rich(
                             TextSpan(
@@ -148,8 +180,7 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
                             controller: _bodyController,
-                            minLines: 10,
-                            maxLines: 100,
+                            maxLines: 10,
                             decoration: InputDecoration(
                                 labelText: 'Body',
                                 border: OutlineInputBorder()),
@@ -162,95 +193,11 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
               ),
             ],
           ),
-          SizedBox(
-            height: 15,
-          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: send,
         child: Text("Send"),
-=======
-            SizedBox(
-              height: 20,
-            ),
-            Text('${widget.staff['Name']}',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: 5,
-            ),
-            Text('Major: ${widget.staff['Major']}'),
-            Text(
-              'Fact: ${widget.staff['Fact']}',
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              'Contact: ${widget.staff['Contact']}',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
->>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
-=======
-            SizedBox(
-              height: 20,
-            ),
-            Text('${widget.staff['Name']}',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: 5,
-            ),
-            Text('Major: ${widget.staff['Major']}'),
-            Text(
-              'Fact: ${widget.staff['Fact']}',
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              'Contact: ${widget.staff['Contact']}',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
->>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
-=======
-            SizedBox(
-              height: 20,
-            ),
-            Text('${widget.staff['Name']}',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: 5,
-            ),
-            Text('Major: ${widget.staff['Major']}'),
-            Text(
-              'Fact: ${widget.staff['Fact']}',
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              'Contact: ${widget.staff['Contact']}',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
->>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
       ),
     );
   }
