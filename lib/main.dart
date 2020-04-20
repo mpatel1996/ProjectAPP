@@ -94,6 +94,9 @@ class MyAppState extends State<MyApp> {
 =======
               icon: Icon(Icons.mood, color: Color.fromARGB(225, 16, 126, 1),), 
               title: Text('Partners', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+<<<<<<< HEAD
+>>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
+=======
 >>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
             ),
             BottomNavigationBarItem(

@@ -35,6 +35,7 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                     width: 350,
                   ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                   // Info
                   Container(
@@ -168,6 +169,33 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: send,
         child: Text("Send"),
+=======
+            SizedBox(
+              height: 20,
+            ),
+            Text('${widget.staff['Name']}',
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 5,
+            ),
+            Text('Major: ${widget.staff['Major']}'),
+            Text(
+              'Fact: ${widget.staff['Fact']}',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              'Contact: ${widget.staff['Contact']}',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+>>>>>>> parent of fcfe691... Version 1.0.0 to the Google playstore.
 =======
             SizedBox(
               height: 20,
