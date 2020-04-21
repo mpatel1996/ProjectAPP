@@ -16,48 +16,53 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   int _selectedPage = 3;
-  String title = "Events";
-  final _pageOptions = [    
+  String title = " ";
+
+  final _pageOptions = [
     EventPage(),
     StaffPage(),
     ResourcePage(),
     FaqPage(),
   ];
 
-  final _titleOption = [    
+  final _titleOption = [
     "Events",
     "Staff and Peer Mentors",
     "Campus Resources",
     "FAQ Page",
   ];
 
-  final DatabaseReference ref = FirebaseDatabase.instance.reference();
-  var employeeList = [];
+  // final DatabaseReference ref = FirebaseDatabase.instance.reference();
+  // var employeeList = [];
 
-  void getNames() {
-    print('Get Name Called');
-    ref.child("/employee").once().then((ds) {
-      employeeList.clear();
-      ds.value.forEach((key, value) {
-        print(key);
-        print(value);
-        employeeList.add(value);
-      });
+  // void getNames() {
+  //   print('Get Name Called');
+  //   ref.child("/employee").once().then((ds) {
+  //     employeeList.clear();
+  //     ds.value.forEach((key, value) {
+  //       print(key);
+  //       print(value);
+  //       employeeList.add(value);
+  //     });
 
-      // print(employeeList);
-    }).catchError((e) {
-      print('Failed to get Employee Names' + e.toString());
-    });
-  }
+  //     // print(employeeList);
+  //   }).catchError((e) {
+  //     print('Failed to get Employee Names' + e.toString());
+  //   });
+  // }
+
+  // Color selection for the bottom nav bar
+  var colorDefault = Color.fromARGB(225, 16, 126, 1);
+  var colorSelected = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "PolyTransfer Connect",
+      // title: "PolyTransfer Connect",
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      
+
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
@@ -74,20 +79,52 @@ class MyAppState extends State<MyApp> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('Event', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+              icon: Icon(
+                Icons.event,
+                color: (_selectedPage == 0) ? colorSelected : colorDefault,
+              ),
+              title: Text(
+                'Event',
+                style: TextStyle(
+                  color: (_selectedPage == 0) ? colorSelected : colorDefault,
+                ),
+              ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('Staff', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+              icon: Icon(
+                Icons.person,
+                color: (_selectedPage == 1) ? colorSelected : colorDefault,
+              ),
+              title: Text(
+                'Staff',
+                style: TextStyle(
+                  color: (_selectedPage == 1) ? colorSelected : colorDefault,
+                ),
+              ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.mood, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('Resources', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+              icon: Icon(
+                Icons.star,
+                color: (_selectedPage == 2) ? colorSelected : colorDefault,
+              ),
+              title: Text(
+                'Resources',
+                style: TextStyle(
+                  color: (_selectedPage == 2) ? colorSelected : colorDefault,
+                ),
+              ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.help_outline, color: Color.fromARGB(225, 16, 126, 1),), 
-              title: Text('FAQ', style: TextStyle(color: Color.fromARGB(225, 16, 126, 1),),),
+              icon: Icon(
+                Icons.help_outline,
+                color: (_selectedPage == 3) ? colorSelected : colorDefault,
+              ),
+              title: Text(
+                'FAQ',
+                style: TextStyle(
+                  color: (_selectedPage == 3) ? colorSelected : colorDefault,
+                ),
+              ),
             ),
           ],
         ),

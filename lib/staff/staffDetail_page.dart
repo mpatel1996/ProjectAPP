@@ -46,7 +46,7 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    double cWidth = MediaQuery.of(context).size.width * 0.55;
+    double cWidth = MediaQuery.of(context).size.width * 0.50;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.staff['Name']),
@@ -60,35 +60,35 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   // Image
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          (widget.staff['Image'] == null)
-                              ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0, vertical: 20.0),
-                                  child: Image.asset(
-                                    'lib/images/profile_picture.png',
-                                    height: 100,
-                                    width: 100,
-                                  ),
-                                )
-                              : Image.network(
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        (widget.staff['Image'] == null)
+                            ? Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 20.0),
+                                child: Image.asset(
+                                  'lib/images/profile_picture.png',
+                                  height: 100,
+                                  width: 100,
+                                ),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Image.network(
                                   widget.staff['Image'],
                                   fit: BoxFit.fill,
                                   height: 150,
                                   width: 150,
                                 ),
-                        ]),
-                  ),
+                              ),
+                      ]),
 
                   // Info
                   Container(
                     width: cWidth,
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -96,20 +96,37 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                               style: TextStyle(
                                   fontSize: 24.0, fontWeight: FontWeight.bold)),
                           SizedBox(
-                            height: 5,
+                            height: 15,
                           ),
-                          Text.rich(
-                            TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Major: ',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                TextSpan(
-                                  text: '${widget.staff['Major']}',
+                          (widget.staff['Major'] != null)
+                              ? Text.rich(
+                                  TextSpan(
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'Major: ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                        text: '${widget.staff['Major']}',
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : Text.rich(
+                                  TextSpan(
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'Position: ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                        text: '${widget.staff['Position']}',
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
+                          SizedBox(
+                            height: 5,
                           ),
                           Text.rich(
                             TextSpan(
@@ -127,19 +144,19 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                           SizedBox(
                             height: 15,
                           ),
-                          Text.rich(
-                            TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Contact: ',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                TextSpan(
-                                  text: '${widget.staff['Contact']}',
-                                ),
-                              ],
-                            ),
-                          ),
+                          // Text.rich(
+                          //   TextSpan(
+                          //     children: <TextSpan>[
+                          //       TextSpan(
+                          //           text: 'Contact: ',
+                          //           style:
+                          //               TextStyle(fontWeight: FontWeight.bold)),
+                          //       TextSpan(
+                          //         text: '${widget.staff['Contact']}',
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -150,8 +167,21 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
               // Email me page
               Column(
                 children: <Widget>[
+                  // Container(
+                  //   // margin: const EdgeInsets.all(10.0),
+                  //   padding: const EdgeInsets.all(3.0),
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.black12,
+                  //       border: Border.all(color: Colors.blueAccent),
+                  //       borderRadius:
+                  //           new BorderRadius.all(Radius.circular(10.0))),
+                  //   child: Text(
+                  //     "Contact Me",
+                  //     style: TextStyle(fontSize: 20),
+                  //   ),
+                  // ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(10.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -166,6 +196,7 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                         //     ),
                         //   ),
                         // ),
+
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: TextField(
@@ -192,6 +223,9 @@ class _StaffDetailPageState extends State<StaffDetailPage> {
                 ],
               ),
             ],
+          ),
+          SizedBox(
+            height: 15,
           ),
         ],
       ),
